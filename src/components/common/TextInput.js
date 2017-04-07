@@ -1,17 +1,17 @@
 import React, {PropTypes} from 'react';
+import { Input } from 'reactstrap';
 
-const TextInput = ({name, onChange, placeholder, value}) => {
+const TextInput = ({type = 'text', ...restProps}) => {
   return (
     <div className="form-group">
       <label htmlFor={name}>{name}</label>
       <div className="field">
-        <input
-          type="text"
-          name={name}
+        <Input
           className="form-control"
-          placeholder={placeholder}
-          value={value}
-          onChange={onChange}/>
+          type={type}
+          {...restProps}
+        />
+
       </div>
     </div>
   );

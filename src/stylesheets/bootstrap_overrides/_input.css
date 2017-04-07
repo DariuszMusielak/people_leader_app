@@ -1,0 +1,71 @@
+.form-control, .btn {
+  border-radius: 0;
+  border: none;
+}
+
+.btn {
+  color: white;
+  background-color: #F96A76;
+}
+.btn:hover {
+  color: white;
+  cursor: pointer;
+  background-color: #ff939c;
+}
+
+.btn-full-width {
+  width: 100%;
+}
+
+label {
+  color: rgba(255, 255, 255, 0.75);
+  text-shadow: 0px 2px 0 rgba(18, 86, 136, 0.11);
+}
+
+.checkbox-custom, .radio-custom {
+    opacity: 0;
+    position: absolute;
+}
+
+.checkbox-custom, .checkbox-custom-label, .radio-custom, .radio-custom-label {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.checkbox-custom-label, .radio-custom-label {
+    position: relative;
+}
+
+.checkbox-custom + .checkbox-custom-label:before, .radio-custom + .radio-custom-label:before {
+  content: '';
+  background: #fff;
+  border: 1px solid #ddd;
+  display: inline-block;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  padding: 2px;
+  margin-right: 10px;
+  text-align: center;
+  top: -2px;
+  position: relative;
+}
+
+.checkbox-custom:checked + .checkbox-custom-label:before {
+    background: #F96A76;
+}
+
+.radio-custom + .radio-custom-label:before {
+    border-radius: 50%;
+}
+
+.radio-custom:checked + .radio-custom-label:before {
+    background: #ccc;
+}
+
+
+.checkbox-custom:focus + .checkbox-custom-label, .radio-custom:focus + .radio-custom-label {
+  outline: 0px solid #ddd;
+}

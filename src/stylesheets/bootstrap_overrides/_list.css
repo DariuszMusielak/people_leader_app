@@ -1,0 +1,12 @@
+ul.list-inline li{
+  float: left;
+  margin: 1px;
+}
+
+ul.list-inline li.list__element--maring {
+  margin-right: 15px;
+}
+
+.css-grid ul {
+  list-style: none;
+}
