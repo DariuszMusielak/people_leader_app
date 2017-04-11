@@ -1,11 +1,11 @@
 .tooltip-inner {
   background-color: white;
-  color: #5cbf94;
+  color: #91D1BF;
   border-radius: 0;
 }
 
 .tooltip-inner {
-  background-color: #F96A76;
+  background-color: #EC7B7C;
   color: white;
   border-radius: 0;
 }
@@ -18,5 +18,5 @@
 }
 
 .tooltip.tooltip-top .tooltip-inner::before, .tooltip.bs-tether-element-attached-bottom .tooltip-inner::before {
-  border-top-color: #F96A76;
+  border-top-color: #EC7B7C;
 }
