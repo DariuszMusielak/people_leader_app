@@ -1,11 +1,14 @@
 import * as types from './actionTypes';
 import membershipApi from '../api/membershipApi';
 import { loadProjects } from './projectActions';
-// TODO: Fix API to return only uniq memberships
-import { uniqBy } from 'lodash';
+import { uniqBy, filter } from 'lodash';
 
-// TODO: Fix API to return only uniq memberships
-const getUniqMemberships = memberships => uniqBy(memberships, membership => membership.user_email);
+const filterMemberships = memberships => filter(memberships, membership =>
+  membership.project_name !== 'Internals'
+);
+
+const getUniqMemberships = memberships =>
+  uniqBy(filterMemberships(memberships), membership => membership.user_email);
 
 const getProjectsFromMemberships = memberships =>
   [...new Set(memberships.map(membership => membership.project_name))]
@@ -13,7 +16,6 @@ const getProjectsFromMemberships = memberships =>
 export function loadMemberships(user_email, f2f_date) {
   return function(dispatch) {
     return membershipApi.getAllMemberships(user_email, f2f_date).then(memberships => {
-      // TODO: Fix API to return only uniq memberships
       dispatch(loadMembershipsSuccess(getUniqMemberships(memberships)));
       dispatch(loadProjects(getProjectsFromMemberships(memberships)));
     }).catch(error => {
@@ -22,19 +24,6 @@ export function loadMemberships(user_email, f2f_date) {
   };
 }
 
-// export const loadMemberships = (user_email, f2f_date) => (dispatch) =>
-//   membershipApi.getAllMemberships(user_email, f2f_date)
-//     .then(memberships => {
-//       dispatch(loadMembershipsSuccess(memberships));
-//     }).catch(error => {
-//       throw(error);
-//     });
-
 export function loadMembershipsSuccess(memberships) {
   return { type: types.LOAD_MEMBERSHIPS_SUCCESS, memberships };
 }
-
-// export const loadMembershipsSuccess = (memberships) => ({
-//   type: types.LOAD_MEMBERSHIPS_SUCCESS,
-//   memberships,
-// })
