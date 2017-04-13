@@ -6,7 +6,7 @@ class Team extends React.Component {
 
     const nameStyle = () => {
        return {
-         "border-color": color
+         "borderColor": color
        }
      }
 

@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom'
 import {connect} from 'react-redux';
 import * as teamActions from '../../actions/teamActions';
 import Team from './Team'
-import { Row } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import { CSSGrid, layout, easings, enterExitStyle } from 'react-stonecutter';
-import TextInput from '../common/TextInput';
+import TeamsFilters from './TeamsFilters';
 
 class TeamsPage extends React.Component {
   componentDidMount() {
@@ -47,6 +47,9 @@ class TeamsPage extends React.Component {
     const { teams } = this.props;
     return (
       <Row>
+        <Col xs="12">
+          <TeamsFilters />
+        </Col>
         <div className="css-grid">
           <hr/>
           {this.renderGrid(teams)}
@@ -61,7 +64,8 @@ TeamsPage.propTypes = {
 };
 
 function mapStateToProps(state, ownProps) {
-  const sortedTeams = state.teams.sort((a,b) => {
+  const activeTeams = state.teams.filter(team => team.visible);
+  const sortedTeams = activeTeams.sort((a,b) => {
     return (
         a.name.toUpperCase() > b.name.toUpperCase()
       ) ? 1 : (

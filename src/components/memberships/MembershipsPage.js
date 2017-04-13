@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import * as membershipActions from '../../actions/membershipActions';
 import MembershipList from './MembershipList';
-import MembershipsFiltersPage from './MembershipsFiltersPage';
+import MembershipsFilters from './MembershipsFilters';
 import { Row, Col, Button } from 'reactstrap';
 import { CSSGrid, layout, easings, enterExitStyle } from 'react-stonecutter';
 import { extractEmailsFromMemberships } from './../../helpers/helper';
@@ -74,7 +74,7 @@ class MembershipsPage extends React.Component {
           <hr/>
           <Row>
             <Col xs="10">
-              <MembershipsFiltersPage memberships={memberships} />
+              <MembershipsFilters memberships={memberships} />
             </Col>
             <Col xs="2">
               <Link to={`/${team_name}/${user_email}`} className="pull-right btn btn-secondary">
