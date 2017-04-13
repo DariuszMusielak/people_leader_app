@@ -8,7 +8,7 @@ const filterMemberships = memberships => filter(memberships, membership =>
 );
 
 const getUniqMemberships = memberships =>
-  uniqBy(filterMemberships(memberships), membership => membership.user_email);
+  uniqBy(memberships, membership => membership.user_email);
 
 const getProjectsFromMemberships = memberships =>
   [...new Set(memberships.map(membership => membership.project_name))]
@@ -16,7 +16,13 @@ const getProjectsFromMemberships = memberships =>
 export function loadMemberships(user_email, f2f_date) {
   return function(dispatch) {
     return membershipApi.getAllMemberships(user_email, f2f_date).then(memberships => {
-      dispatch(loadMembershipsSuccess(getUniqMemberships(memberships)));
+      dispatch(
+        loadMembershipsSuccess(
+          getUniqMemberships(
+            filterMemberships(memberships)
+          )
+        )
+      );
       dispatch(loadProjects(getProjectsFromMemberships(memberships)));
     }).catch(error => {
       throw(error);
