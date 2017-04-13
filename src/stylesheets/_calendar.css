@@ -15,7 +15,7 @@
   padding: 15px 5px;
   margin: 0;
   text-align: center;
-  color: #7BCCAC;
+  color: #91D1BF;
   font-size: 14px;
   text-transform: uppercase;
   font-weight: 100;
@@ -23,15 +23,15 @@
 
 
 .react-date-picker__month-view--theme-default .react-date-picker__month-view-day--active .react-date-picker__month-view-day-text {
-  border-color: #7bccac;
+  border-color: #91D1BF;
 }
 
 .react-date-picker__month-view--theme-default .react-date-picker__month-view-day--in-hover-range .react-date-picker__month-view-day-text, .react-date-picker__month-view--theme-default .react-date-picker__month-view-day--in-range .react-date-picker__month-view-day-text, .react-date-picker__month-view--theme-default .react-date-picker__month-view-day--value .react-date-picker__month-view-day-text {
-  background: #7bccac;
+  background: #91D1BF;
 }
 
 .react-date-picker__month-view--theme-default .react-date-picker__month-view-day--in-hover-range .react-date-picker__month-view-day-text:hover, .react-date-picker__month-view--theme-default .react-date-picker__month-view-day--in-range .react-date-picker__month-view-day-text:hover, .react-date-picker__month-view--theme-default .react-date-picker__month-view-day--value .react-date-picker__month-view-day-text:hover {
-  background: #7bccac;
+  background: #91D1BF;
 }
 
 .react-date-picker__month-view--theme-default .react-date-picker__month-view-day .react-date-picker__month-view-day-text:hover {
@@ -39,24 +39,24 @@
 }
 
 .react-date-picker__year-view--theme-default .react-date-picker__year-view-month--active.react-date-picker__year-view-month--value {
-  background: #7bccac;
+  background: #91D1BF;
 }
 
 
 .react-date-picker__year-view--theme-default .react-date-picker__year-view-month--value {
-  border-color: #7bccac;
+  border-color: #91D1BF;
 }
 
 .react-date-picker__decade-view--theme-default .react-date-picker__decade-view-year--active.react-date-picker__decade-view-year--value {
-  background: #7bccac;
+  background: #91D1BF;
 }
 
 
 .react-date-picker__decade-view--theme-default .react-date-picker__decade-view-year--value {
-  border-color: #7bccac;
+  border-color: #91D1BF;
 }
 
 .react-date-picker__footer--theme-default .react-date-picker__footer-button:not(.react-date-picker__footer-button--disabled):hover {
-  border-color: #7bccac;
-  background: #7bccac;
+  border-color: #91D1BF;
+  background: #91D1BF;
 }

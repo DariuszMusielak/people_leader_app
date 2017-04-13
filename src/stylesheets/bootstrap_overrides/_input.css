@@ -5,7 +5,7 @@
 
 .btn {
   color: white;
-  background-color: #F96A76;
+  background-color: #EC7B7C;
 }
 .btn:hover {
   color: white;
@@ -54,7 +54,7 @@ label {
 }
 
 .checkbox-custom:checked + .checkbox-custom-label:before {
-    background: #F96A76;
+    background: #EC7B7C;
 }
 
 .radio-custom + .radio-custom-label:before {
