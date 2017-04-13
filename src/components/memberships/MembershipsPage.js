@@ -6,6 +6,7 @@ import MembershipsFiltersPage from './MembershipsFiltersPage';
 import { Row, Col, Button } from 'reactstrap';
 import { CSSGrid, layout, easings, enterExitStyle } from 'react-stonecutter';
 import { extractEmailsFromMemberships } from './../../helpers/helper';
+import { Link } from 'react-router-dom'
 
 class MembershipsPage extends React.Component {
   componentDidMount() {
@@ -76,13 +77,9 @@ class MembershipsPage extends React.Component {
               <MembershipsFiltersPage memberships={memberships} />
             </Col>
             <Col xs="2">
-              <Button
-                className="pull-right"
-                color="secondary"
-                onClick={() => this.props.history.push('/')}
-              >
-                Go Back
-              </Button>
+              <Link to={`/${team_name}/${user_email}`} className="pull-right btn btn-secondary">
+                Change date
+              </Link>
             </Col>
           </Row>
           <hr/>
@@ -115,12 +112,13 @@ MembershipsPage.propTypes = {
 };
 
 function mapStateToProps(state, ownProps) {
-  const { user_email, f2f_date } = ownProps.match.params
+  const { team_name, user_email, f2f_date } = ownProps.match.params
   const activeProjects = state.projects.filter(project => project.visible).map(project => project.name);
   return {
     memberships: state.memberships.filter(membership => activeProjects.includes(membership.project_name)),
     user_email: user_email,
-    f2f_date: f2f_date
+    f2f_date: f2f_date,
+    team_name: team_name
   };
 }
 
