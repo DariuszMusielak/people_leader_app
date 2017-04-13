@@ -9,4 +9,5 @@ ul.list-inline li.list__element--maring {
 
 .css-grid ul {
   list-style: none;
+  padding: 0;
 }
