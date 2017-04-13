@@ -5,6 +5,7 @@ import MembershipList from './MembershipList';
 import MembershipsFiltersPage from './MembershipsFiltersPage';
 import { Row, Col, Button } from 'reactstrap';
 import { CSSGrid, layout, easings, enterExitStyle } from 'react-stonecutter';
+import { extractEmailsFromMemberships } from './../../helpers/helper';
 
 class MembershipsPage extends React.Component {
   componentDidMount() {
@@ -28,19 +29,12 @@ class MembershipsPage extends React.Component {
     }
   }
 
-  render() {
-    const groups = {};
-    const { memberships } = this.props;
-    memberships.forEach(membership => {
-      groups[membership.user_role] = groups[membership.user_role] || []
-      groups[membership.user_role].push(membership)
-    });
-    const emails = memberships.map(m => m.user_email).join(', ')
+  renderGrid = (groups) => {
     const { quartInOut } = easings;
     const { enter, entered, exit } = enterExitStyle.fromLeftToRight;
 
-    const grid = () => {
-      return <CSSGrid
+    return (
+      <CSSGrid
         component="ul"
         columns={3}
         columnWidth={374}
@@ -61,7 +55,17 @@ class MembershipsPage extends React.Component {
           )
         })}
       </CSSGrid>
-    }
+    )
+  }
+
+  render() {
+    const groups = {};
+    const { memberships, user_email, team_name } = this.props;
+    memberships.forEach(membership => {
+      groups[membership.user_role] = groups[membership.user_role] || []
+      groups[membership.user_role].push(membership)
+    });
+    const emails = extractEmailsFromMemberships(memberships);
 
     return (
       <Row>
@@ -84,7 +88,7 @@ class MembershipsPage extends React.Component {
           <hr/>
         </Col>
         <div className="css-grid">
-          {grid()}
+          {this.renderGrid(groups)}
         </div>
         <Col xs="12">
           <Button
@@ -96,7 +100,7 @@ class MembershipsPage extends React.Component {
           </Button>
         </Col>
         <input
-          className='push-behind-screen'
+          className="push-behind-screen"
           value={emails}
           ref={(input) => this.input = input }
           readOnly
