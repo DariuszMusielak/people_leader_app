@@ -2,8 +2,9 @@ import React, { PropTypes, Component } from 'react';
 import {
   Button, Col, Card, CardBlock, CardTitle
 } from 'reactstrap';
-import MembershipTooltip from './MembershipTooltip';
+import GravatarWithTooltip from '../common/GravatarWithTooltip'
 import { CSSGrid, layout, easings, enterExitStyle } from 'react-stonecutter';
+import { extractEmailsFromMemberships } from './../../helpers/helper'
 
 class MembershipList extends Component {
   copyEmails = () => {
@@ -12,9 +13,20 @@ class MembershipList extends Component {
     this.input.blur();
   }
 
+  renderGravatar = (membership) => {
+    const { user_name, user_email, project_name } = membership;
+    return (
+      <GravatarWithTooltip
+        email={user_email}
+        full_name={user_name}
+        project_name={project_name}
+      />
+    );
+  }
+
   render() {
     const { memberships, roleName } = this.props;
-    const emails = memberships.map(m => m.user_email).join(', ')
+    const emails = extractEmailsFromMemberships(memberships);
     const { quartInOut } = easings;
     const { enter, entered, exit } = enterExitStyle.fromTop;
 
@@ -40,7 +52,7 @@ class MembershipList extends Component {
               >
                 {memberships.map(membership =>
                   <li key={membership.id} itemHeight={100}>
-                    <MembershipTooltip membership={membership} />
+                    {this.renderGravatar(membership)}
                   </li>
                 )}
               </CSSGrid>
@@ -56,7 +68,7 @@ class MembershipList extends Component {
         </Card>
         <hr/>
         <input
-          className='push-behind-screen'
+          className="push-behind-screen"
           value={emails}
           ref={(input) => this.input = input }
           readOnly
