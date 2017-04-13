@@ -24,7 +24,7 @@ class TeamsPage extends React.Component {
         gutterWidth={15}
         gutterHeight={15}
         layout={layout.pinterest}
-        duration={800}
+        duration={500}
         easing={quartInOut}
         enter={enter}
         entered={entered}
