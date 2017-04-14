@@ -21,6 +21,7 @@ ReactDOM.render(
         <Link to="/" className='link--header'>
           <h1> Leader App </h1>
         </Link>
+
         <Route exact path="/" component={TeamsPage}/>
         <Route exact path="/:team_name" component={TeamMembersPage}/>
         <Route exact path="/:team_name/:user_email" component={FetchMembershipsForm}/>

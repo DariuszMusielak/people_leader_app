@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { Calendar } from 'react-date-picker';
 import 'react-date-picker/index.css';
 import { Row, Col, Button } from 'reactstrap';
@@ -60,7 +60,7 @@ class FetchMembershipsForm extends React.Component {
         <form onSubmit={this.onFetch}>
           <Row>
             <Col xs={{ size: 4, push: 4, pull: 4 }}>
-              <p className='calendar__title'>Date of your last F2F with this person</p>
+              <p className="calendar__title">Date of your last F2F with this person</p>
               <Calendar
                 onChange={this.onF2fDateChange}
                 weekStartDay={1}
@@ -87,12 +87,12 @@ class FetchMembershipsForm extends React.Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
+const mapStateToProps = (state, ownProps) => {
   const { user_email, team_name } = ownProps.match.params
   return {
     memberships: state.memberships,
     user_email: user_email,
-    team_name: team_name
+    team_name: team_name,
   };
 }
 

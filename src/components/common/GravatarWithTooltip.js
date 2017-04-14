@@ -5,39 +5,40 @@ import { Tooltip } from 'reactstrap';
 class GravatarWithTooltip extends Component {
   constructor(props) {
     super(props);
-    this.toggle = this.toggle.bind(this);
     this.state = {
       tooltipOpen: false,
-      showTooltip: typeof this.props.showTooltip !== 'undefined' ? this.props.showTooltip : true
+      showTooltip: props.showTooltip,
     };
   }
 
-  toggle() {
+  toggle = () => {
     this.setState({
       tooltipOpen: !this.state.tooltipOpen && this.state.showTooltip
     });
   }
 
-  projectDetails() {
-    if(this.props.project_name){
-      return (
-        <div>
-          <b>Project: </b>
-          {this.props.project_name}
-        </div>
-      )
-    }else{
-      return '';
-    }
+  projectDetails = () => {
+    const { project_name } = this.props;
+    if (!project_name) { return null; }
+
+    return (
+      <div>
+        <b>Project: </b>
+        {project_name}
+      </div>
+    );
   }
 
   renderTooltip = () => {
     const { email, full_name } = this.props;
-    if(!this.state.showTooltip){ return; }
+    const { showTooltip, tooltipOpen } = this.state;
+
+    if(!showTooltip){ return null; }
+
     return (
       <Tooltip
         placement="top"
-        isOpen={this.state.tooltipOpen}
+        isOpen={tooltipOpen}
         target={email}
         toggle={this.toggle}
       >
@@ -50,8 +51,7 @@ class GravatarWithTooltip extends Component {
   }
 
   render() {
-    const { email } = this.props;
-    const size = typeof this.props.size !== 'undefined' ? this.props.size : 100;
+    const { email, size } = this.props;
     return (
       <div>
         {this.renderTooltip()}
@@ -60,5 +60,10 @@ class GravatarWithTooltip extends Component {
     );
   }
 };
+
+GravatarWithTooltip.defaultProps = {
+  size: 100,
+  showTooltip: true,
+}
 
 export default GravatarWithTooltip;

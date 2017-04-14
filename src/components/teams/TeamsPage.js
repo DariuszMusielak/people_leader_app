@@ -1,14 +1,15 @@
 import React, {PropTypes} from 'react';
 import { Link } from 'react-router-dom'
-import {connect} from 'react-redux';
-import * as teamActions from '../../actions/teamActions';
+import { connect } from 'react-redux';
+import { loadTeams } from '../../actions/teamActions';
 import Team from './Team'
 import { Row, Col } from 'reactstrap';
 import { CSSGrid, layout, easings, enterExitStyle } from 'react-stonecutter';
 import TeamsFilters from './TeamsFilters';
+import { getSortedTeams } from './../../helpers/teamsHelper'
 
 class TeamsPage extends React.Component {
-  componentDidMount() {
+  componentDidMount = () => {
     this.props.loadTeams()
   }
 
@@ -43,7 +44,7 @@ class TeamsPage extends React.Component {
     )
   }
 
-  render() {
+  render = () => {
     const { teams } = this.props;
     return (
       <Row>
@@ -63,20 +64,8 @@ TeamsPage.propTypes = {
   teams: PropTypes.array.isRequired
 };
 
-function mapStateToProps(state, ownProps) {
-  const activeTeams = state.teams.filter(team => team.visible);
-  const sortedTeams = activeTeams.sort((a,b) => {
-    return (
-        a.name.toUpperCase() > b.name.toUpperCase()
-      ) ? 1 : (
-        (b.name.toUpperCase() > a.name.toUpperCase()
-      ) ? -1 : 0
-    );
-  });
+const mapStateToProps = (state, ownProps) => ({
+  teams: getSortedTeams(state.teams),
+})
 
-  return {
-    teams: sortedTeams
-  };
-}
-
-export default connect(mapStateToProps, { loadTeams: teamActions.loadTeams })(TeamsPage);
+export default connect(mapStateToProps, { loadTeams })(TeamsPage);

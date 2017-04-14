@@ -1,13 +1,13 @@
 import React, {PropTypes} from 'react';
 import { Link } from 'react-router-dom'
-import {connect} from 'react-redux';
-import * as teamMemberActions from '../../actions/teamMemberActions';
+import { connect } from 'react-redux';
+import { loadTeamMembers } from '../../actions/teamMemberActions';
 import { Row, Col } from 'reactstrap';
 import { CSSGrid, layout, easings, enterExitStyle } from 'react-stonecutter';
 import GravatarWithTooltip from '../common/GravatarWithTooltip'
 
 class TeamMembersPage extends React.Component {
-  componentDidMount() {
+  componentDidMount = () => {
     this.props.loadTeamMembers(this.props.team_name)
   }
 
@@ -38,7 +38,7 @@ class TeamMembersPage extends React.Component {
       >
         {team_members.map(team_member => {
           return (
-            <li key={team_member.id} itemHeight={262} className='gravatar__container'>
+            <li key={team_member.id} itemHeight={262} className="gravatar__container">
               <Link to={`/${this.props.team_name}/${team_member.email}`}>
                 {this.renderGravatar(team_member)}
               </Link>
@@ -49,13 +49,13 @@ class TeamMembersPage extends React.Component {
     )
   }
 
-  render() {
+  render = () => {
     const { team_members, team_name } = this.props;
     return (
       <Row>
         <Col xs="12">
           <hr/>
-          <h3 className='pull-left'> {team_name} team </h3>
+          <h3 className="pull-left"> {team_name} team </h3>
           <Link to={`/`} className="pull-right btn btn-secondary">
             Select different team
           </Link>
@@ -74,12 +74,12 @@ TeamMembersPage.propTypes = {
   team_members: PropTypes.array.isRequired
 };
 
-function mapStateToProps(state, ownProps) {
+const mapStateToProps = (state, ownProps) => {
   const { team_name } = ownProps.match.params;
   return {
     team_members: state.team_members,
-    team_name: team_name
+    team_name: team_name,
   };
 }
 
-export default connect(mapStateToProps, { loadTeamMembers: teamMemberActions.loadTeamMembers })(TeamMembersPage);
+export default connect(mapStateToProps, { loadTeamMembers })(TeamMembersPage);

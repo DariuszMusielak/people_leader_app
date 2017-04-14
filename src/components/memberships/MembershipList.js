@@ -4,7 +4,7 @@ import {
 } from 'reactstrap';
 import GravatarWithTooltip from '../common/GravatarWithTooltip'
 import { CSSGrid, layout, easings, enterExitStyle } from 'react-stonecutter';
-import { extractEmailsFromMemberships } from './../../helpers/helper'
+import { extractEmailsFromMemberships } from './../../helpers/membershipsHelper'
 
 class MembershipList extends Component {
   copyEmails = () => {

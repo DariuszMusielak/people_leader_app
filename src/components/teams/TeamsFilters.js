@@ -1,24 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as teamActions from '../../actions/teamActions';
+import { toggleTeam } from '../../actions/teamActions';
 import TextInput from '../common/TextInput';
 
-class TeamsFilters extends React.Component {
-  render = () => {
-    return (
-      <TextInput
-        name='team_name'
-        onChange={(event) => this.props.toggleTeam(event.target.value)}
-        className="btn--filter"
-        placeholder="Type name of your team"
-      />
-    )
-  }
-}
+const TeamsFilters = ({ toggleTeam }) => (
+  <TextInput
+    name='team_name'
+    onChange={(event) => toggleTeam(event.target.value)}
+    className="btn--filter"
+    placeholder="Browse below or type to find your team"
+  />
+)
 
-function mapStateToProps(state, ownProps) {
-  return {};
-}
-
-
-export default connect(mapStateToProps, { toggleTeam: teamActions.toggleTeam })(TeamsFilters);
+export default connect(null, { toggleTeam })(TeamsFilters);

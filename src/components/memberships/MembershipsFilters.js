@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { toggleProject } from '../../actions/projectActions';
 import { Row, Col } from 'reactstrap';
 
