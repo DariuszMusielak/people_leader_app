@@ -18,6 +18,10 @@ export const loadMembershipsSuccess = (memberships) => ({
   type: types.LOAD_MEMBERSHIPS_SUCCESS, memberships,
 })
 
+export const loadMembershipsFailure = (error) => ({
+  type: types.LOAD_MEMBERSHIPS_FAILURE, error,
+})
+
 export const loadMemberships = (user_email, f2f_date) => (dispatch) => {
   return membershipApi.getAllMemberships(user_email, f2f_date).then(memberships => {
     dispatch(
@@ -29,6 +33,6 @@ export const loadMemberships = (user_email, f2f_date) => (dispatch) => {
     );
     dispatch(loadProjects(getProjectsFromMemberships(memberships)));
   }).catch(error => {
-    throw(error);
+    return dispatch(loadMembershipsFailure(error));
   });
 }
