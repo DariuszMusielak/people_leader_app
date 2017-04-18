@@ -1,9 +1,9 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { toggleProject } from '../../actions/projectActions';
 import { Row, Col } from 'reactstrap';
 
-const MembershipsFiltersPage = ({ projects, toggleProject }) => (
+const MembershipsFilters = ({ projects, toggleProject }) => (
   <Row>
     <hr/>
     <Col xs="12" md="2">
@@ -42,4 +42,4 @@ export default connect(
     projects: state.projects,
   }),
   { toggleProject },
-)(MembershipsFiltersPage);
+)(MembershipsFilters);

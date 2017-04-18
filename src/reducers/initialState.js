@@ -1,4 +1,6 @@
 export default {
   memberships: [],
-  projects: []
+  projects: [],
+  teams: [],
+  team_members: []
 }

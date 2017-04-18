@@ -1,9 +1,12 @@
 import axios from 'axios'
 
-class MembershipApi {
-  static getAllMemberships(user_email, f2f_date) {
-    let url = new URL('https://people.devguru.co/api/v3/memberships')
-    let params = { token: process.env.REACT_APP_PEOPLE_API_TOKEN, user_email, f2f_date }
+class TeamMemberApi {
+  static getTeamMembers(team_name) {
+    let url = new URL('https://people.devguru.co/api/v3/team_members')
+    let params = {
+      token: process.env.REACT_APP_PEOPLE_API_TOKEN,
+      team_name
+    }
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
 
     return axios.get(
@@ -17,4 +20,4 @@ class MembershipApi {
   }
 }
 
-export default MembershipApi;
+export default TeamMemberApi;

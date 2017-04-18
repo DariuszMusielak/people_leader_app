@@ -1,0 +1,15 @@
+.gravatar__container {
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 30px;
+}
+
+.gravatar__container:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+}
+
+.gravatar--center-img img {
+  display: block;
+  margin: 0 auto;
+}

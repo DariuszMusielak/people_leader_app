@@ -1,0 +1,8 @@
+.link--header:hover, .link--header:focus {
+  text-decoration: none;
+  color: transparent;
+}
+
+.link--header:hover h1 {
+  color: #EC7B7C;
+}

@@ -1,14 +1,15 @@
 import React, {PropTypes} from 'react';
-import {connect} from 'react-redux';
-import * as membershipActions from '../../actions/membershipActions';
+import { connect } from 'react-redux';
+import { loadMemberships } from '../../actions/membershipActions';
 import MembershipList from './MembershipList';
-import MembershipsFiltersPage from './MembershipsFiltersPage';
+import MembershipsFilters from './MembershipsFilters';
 import { Row, Col, Button } from 'reactstrap';
 import { CSSGrid, layout, easings, enterExitStyle } from 'react-stonecutter';
-import { extractEmailsFromMemberships } from './../../helpers/helper';
+import { extractEmailsFromMemberships, getFilteredMemberships } from './../../helpers/membershipsHelper';
+import { Link } from 'react-router-dom'
 
 class MembershipsPage extends React.Component {
-  componentDidMount() {
+  componentDidMount = () => {
     this.props.loadMemberships(this.props.user_email, this.props.f2f_date)
   }
 
@@ -58,7 +59,7 @@ class MembershipsPage extends React.Component {
     )
   }
 
-  render() {
+  render = () => {
     const groups = {};
     const { memberships, user_email, team_name } = this.props;
     memberships.forEach(membership => {
@@ -73,16 +74,12 @@ class MembershipsPage extends React.Component {
           <hr/>
           <Row>
             <Col xs="10">
-              <MembershipsFiltersPage memberships={memberships} />
+              <MembershipsFilters memberships={memberships} />
             </Col>
             <Col xs="2">
-              <Button
-                className="pull-right"
-                color="secondary"
-                onClick={() => this.props.history.push('/')}
-              >
-                Go Back
-              </Button>
+              <Link to={`/${team_name}/${user_email}`} className="pull-right btn btn-secondary">
+                Change date
+              </Link>
             </Col>
           </Row>
           <hr/>
@@ -114,14 +111,15 @@ MembershipsPage.propTypes = {
   memberships: PropTypes.array.isRequired
 };
 
-function mapStateToProps(state, ownProps) {
-  const { user_email, f2f_date } = ownProps.match.params
-  const activeProjects = state.projects.filter(project => project.visible).map(project => project.name);
+const mapStateToProps = (state, ownProps) => {
+  const { team_name, user_email, f2f_date } = ownProps.match.params;
+  const { memberships, projects } = state;
   return {
-    memberships: state.memberships.filter(membership => activeProjects.includes(membership.project_name)),
-    user_email: user_email,
-    f2f_date: f2f_date
+    memberships: getFilteredMemberships(memberships, projects),
+    user_email,
+    f2f_date,
+    team_name,
   };
 }
 
-export default connect(mapStateToProps, { loadMemberships: membershipActions.loadMemberships })(MembershipsPage);
+export default connect(mapStateToProps, { loadMemberships })(MembershipsPage);
