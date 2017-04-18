@@ -11,14 +11,14 @@ class TeamMembersPage extends React.Component {
     this.props.loadTeamMembers(this.props.team_name)
   }
 
-  renderGravatar = (team_member) => {
-    const { email, full_name } = team_member;
+  renderGravatar = (teamMember) => {
+    const { email, full_name } = teamMember;
     return (
       <GravatarWithTooltip email={email} full_name={full_name} size={200}/>
     );
   }
 
-  renderGrid = (team_members) => {
+  renderGrid = (teamMembers) => {
     const { quartInOut } = easings;
     const { enter, entered, exit } = enterExitStyle.fromLeftToRight;
 
@@ -36,11 +36,11 @@ class TeamMembersPage extends React.Component {
         entered={entered}
         exit={exit}
       >
-        {team_members.map(team_member => {
+        {teamMembers.map(teamMember => {
           return (
-            <li key={team_member.id} itemHeight={262} className="gravatar__container">
-              <Link to={`/${this.props.team_name}/${team_member.email}`}>
-                {this.renderGravatar(team_member)}
+            <li key={teamMember.id} itemHeight={262} className="gravatar__container">
+              <Link to={`/${this.props.team_name}/${teamMember.email}`}>
+                {this.renderGravatar(teamMember)}
               </Link>
             </li>
           )
@@ -50,7 +50,7 @@ class TeamMembersPage extends React.Component {
   }
 
   render = () => {
-    const { team_members, team_name } = this.props;
+    const { teamMembers, team_name } = this.props;
     return (
       <Row>
         <Col xs="12">
@@ -62,7 +62,7 @@ class TeamMembersPage extends React.Component {
         </Col>
         <div className="css-grid">
           <hr/>
-          {this.renderGrid(team_members)}
+          {this.renderGrid(teamMembers)}
           <hr/>
         </div>
       </Row>
@@ -71,14 +71,14 @@ class TeamMembersPage extends React.Component {
 }
 
 TeamMembersPage.propTypes = {
-  team_members: PropTypes.array.isRequired
+  teamMembers: PropTypes.array.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
   const { team_name } = ownProps.match.params;
   return {
-    team_members: state.team_members,
-    team_name: team_name,
+    teamMembers: state.team_members,
+    team_name,
   };
 }
 

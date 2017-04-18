@@ -22,8 +22,8 @@ export const loadMembershipsFailure = (error) => ({
   type: types.LOAD_MEMBERSHIPS_FAILURE, error,
 })
 
-export const loadMemberships = (user_email, f2f_date) => (dispatch) => {
-  return membershipApi.getAllMemberships(user_email, f2f_date).then(memberships => {
+export const loadMemberships = (userEmail, f2fDate) => (dispatch) => {
+  return membershipApi.getAllMemberships(userEmail, f2fDate).then(memberships => {
     dispatch(
       loadMembershipsSuccess(
         getUniqMemberships(

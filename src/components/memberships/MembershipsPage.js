@@ -116,9 +116,9 @@ const mapStateToProps = (state, ownProps) => {
   const { memberships, projects } = state;
   return {
     memberships: getFilteredMemberships(memberships, projects),
-    user_email: user_email,
-    f2f_date: f2f_date,
-    team_name: team_name,
+    user_email,
+    f2f_date,
+    team_name,
   };
 }
 

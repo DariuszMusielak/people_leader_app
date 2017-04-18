@@ -9,9 +9,9 @@ export const loadTeamMembersFailure = (error) => ({
   type: LOAD_TEAM_MEMBERS_FAILURE, error,
 })
 
-export const loadTeamMembers = (team_name) => (dispatch) => {
-  return teamMemberApi.getTeamMembers(team_name).then(team_members => {
-      dispatch(loadTeamMembersSuccess(team_members));
+export const loadTeamMembers = (teamName) => (dispatch) => {
+  return teamMemberApi.getTeamMembers(teamName).then(teamMembers => {
+      dispatch(loadTeamMembersSuccess(teamMembers));
     }).catch(error => {
       return dispatch(loadTeamMembersFailure(error));
     }

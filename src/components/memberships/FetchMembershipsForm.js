@@ -11,18 +11,18 @@ class FetchMembershipsForm extends React.Component {
     super(props);
 
     this.state = {
-      f2f_date: ''
+      f2fDate: ''
     };
     this.onF2fDateChange = this.onF2fDateChange.bind(this);
     this.onFetch = this.onFetch.bind(this);
   }
   onF2fDateChange = (date, _dateDetails, _proxy) => {
-    this.setState({ f2f_date: date });
+    this.setState({ f2fDate: date });
   }
   onFetch = (event) => {
     const { user_email, team_name } = this.props;
     event.preventDefault();
-    this.props.history.push({pathname: `/${team_name}/${user_email}/${this.state.f2f_date}`})
+    this.props.history.push({pathname: `/${team_name}/${user_email}/${this.state.f2fDate}`})
   }
 
   renderBackLink = () => {
@@ -75,7 +75,7 @@ class FetchMembershipsForm extends React.Component {
                 className="btn-full-width"
                 color="secondary"
                 type="submit"
-                disabled={!this.state.f2f_date}
+                disabled={!this.state.f2fDate}
               >
               Fetch people
               </Button>
