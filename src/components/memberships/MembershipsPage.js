@@ -42,7 +42,7 @@ class MembershipsPage extends React.Component {
         gutterWidth={5}
         gutterHeight={5}
         layout={layout.pinterest}
-        duration={800}
+        duration={500}
         easing={quartInOut}
         enter={enter}
         entered={entered}
