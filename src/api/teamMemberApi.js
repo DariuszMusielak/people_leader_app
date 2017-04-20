@@ -1,23 +1,8 @@
-import axios from 'axios'
+import { peopleApi } from './apis'
 
-class TeamMemberApi {
-  static getTeamMembers(team_name) {
-    let url = new URL('https://people.devguru.co/api/v3/team_members')
-    let params = {
-      token: process.env.REACT_APP_PEOPLE_API_TOKEN,
-      team_name
-    }
-    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
-
-    return axios.get(
-      url,
-      { withCredentials: true }
-    ).then(response => {
-      return response.data;
-    }).catch(error => {
-      return error;
-    });
-  }
-}
-
-export default TeamMemberApi;
+export const getAllFor = (team_name) =>
+  peopleApi.get("/team_members", {
+    params: {
+      team_name,
+    },
+  })

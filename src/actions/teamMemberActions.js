@@ -1,5 +1,5 @@
 import { LOAD_TEAM_MEMBERS_SUCCESS, LOAD_TEAM_MEMBERS_FAILURE } from './actionTypes';
-import teamMemberApi from '../api/teamMemberApi';
+import * as teamMembersApi from '../api/teamMemberApi';
 
 export const loadTeamMembersSuccess = (team_members) => ({
   type: LOAD_TEAM_MEMBERS_SUCCESS, team_members,
@@ -10,8 +10,8 @@ export const loadTeamMembersFailure = (error) => ({
 })
 
 export const loadTeamMembers = (teamName) => (dispatch) => {
-  return teamMemberApi.getTeamMembers(teamName).then(teamMembers => {
-      dispatch(loadTeamMembersSuccess(teamMembers));
+  return teamMembersApi.getAllFor(teamName).then(response => {
+      dispatch(loadTeamMembersSuccess(response.data));
     }).catch(error => {
       return dispatch(loadTeamMembersFailure(error));
     }
