@@ -1,5 +1,5 @@
 import * as types from './actionTypes';
-import membershipApi from '../api/membershipApi';
+import * as membershipsApi from '../api/membershipApi';
 import { loadProjects } from './projectActions';
 import { uniqBy, filter } from 'lodash';
 
@@ -23,15 +23,15 @@ export const loadMembershipsFailure = (error) => ({
 })
 
 export const loadMemberships = (userEmail, f2fDate) => (dispatch) => {
-  return membershipApi.getAllMemberships(userEmail, f2fDate).then(memberships => {
+  return membershipsApi.getAllFor(userEmail, f2fDate).then(response => {
     dispatch(
       loadMembershipsSuccess(
         getUniqMemberships(
-          filterMemberships(memberships)
+          filterMemberships(response.data)
         )
       )
     );
-    dispatch(loadProjects(getProjectsFromMemberships(memberships)));
+    dispatch(loadProjects(getProjectsFromMemberships(response.data)));
   }).catch(error => {
     return dispatch(loadMembershipsFailure(error));
   });
