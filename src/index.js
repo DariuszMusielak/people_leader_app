@@ -7,7 +7,7 @@ import {
   Route,
   Link,
   Switch,
-} from 'react-router-dom'
+} from 'react-router-dom';
 import FetchMembershipsForm from './components/memberships/FetchMembershipsForm';
 import TeamsPage from './components/teams/TeamsPage';
 import TeamMembersPage from './components/team_members/TeamMembersPage';
@@ -16,7 +16,7 @@ import LoginPage from './components/users/LoginPage';
 import 'bootstrap/dist/css/bootstrap.css';
 import './stylesheets/leader_app.css';
 import { Container } from 'reactstrap';
-import { PrivateRoute } from './helpers/routeHelper'
+import { PrivateRoute } from './helpers/routeHelper';
 
 const store = configureStore();
 

@@ -1,4 +1,4 @@
-import { peopleApi } from './apis'
+import { peopleApi } from './apis';
 
 export const signIn = (email, apiToken) =>
   peopleApi.get("/users/sign_in", {
